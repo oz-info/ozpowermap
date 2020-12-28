@@ -1,0 +1,7 @@
+# R should not use the linux brew paths. 
+# this laborious workaournd reduces the risk of that.
+.pth = Sys.getenv("PATH")
+.pths = unlist(strsplit(.pth, ":"))
+.brewpthi = as.vector(unlist(lapply(.pths, function (x) grepl("brew", x))))
+.nbrewpthi = as.vector(unlist(lapply(.pths, function (x) !grepl("brew", x))))
+Sys.setenv(PATH=paste(paste(.pths[.nbrewpthi], collapse=":"), paste(.pths[.brewpthi], collapse=":"), sep=":"))
