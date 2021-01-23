@@ -1,18 +1,17 @@
 library(eechidna)
-#library(ozfedelect)
-#library(devtools)
-
-
-library(eechidna)
 library(tidyverse)
 library(purrr)
 library(knitr)
 library(broom)
 library(purrrlyr)
+library(scales)
+library(ggthemes)
+
 data(fp16)
 data(tpp16)
 data(tcp16)
 data(abs2016)
+
 # inspect the data frame
 glimpse(fp16)
 # show the first few rows
@@ -27,7 +26,6 @@ who_won <- tcp16 %>%
 who_won %>% 
     kable()
 # plot
-library(scales)
 ggplot(who_won, 
        aes(reorder(PartyNm, n), 
            n)) +
@@ -54,9 +52,10 @@ who_most_votes_prop %>%
     head %>% 
     kable
 
-library(ggthemes)
-# nat_map16 <- nat_map_download(2016)
-# nat_data16 <- nat_data_download(2016)
+# nat_map19 <- nat_map_download(2019)
+# nat_data19 <- nat_data_download(2019)
+nat_map16 <- nat_map_download(2016)
+nat_data16 <- nat_data_download(2016)
 ggplot(aes(map_id=id), data=nat_data16) +
     geom_map(aes(fill=state), map=nat_map16, col = "grey50") +
     expand_limits(x=nat_map16$long, y=nat_map16$lat) + 
@@ -94,5 +93,3 @@ ggplot(data=nat_map16) +
     scale_colour_manual(name="Political Party", values=partycolours) +
     theme_map() + coord_equal() + theme(legend.position="bottom")
 
-# nat_map19 <- nat_map_download(2019)
-# nat_data19 <- nat_data_download(2019)
