@@ -7,22 +7,23 @@ library(purrrlyr)
 library(scales)
 library(ggthemes)
 
-data(abs2016)
-data(fp16)
-data(tpp16)
-data(tcp16)
-fp=fp16
-abs=abs2016
-tpp=tpp16
-tcp=tcp16
-
-# data(fp19)
-# data(tpp19)
-# data(tcp19)
-# abs=abs2019
+# data(abs2016)
+# data(fp16)
+# data(tpp16)
+# data(tcp16)
 # fp=fp16
-# tpp=tpp19
-# tcp=tcp19
+# abs=abs2016
+# tpp=tpp16
+# tcp=tcp16
+
+data(abs2016)
+data(fp19)
+data(tpp19)
+data(tcp19)
+abs=abs2016
+fp=fp19
+tpp=tpp19
+tcp=tcp19
 
 nat_map <- nat_map_download(2016)
 nat_data <- nat_data_download(2016)
@@ -107,3 +108,7 @@ ggplot(data=nat_map) +
     scale_colour_manual(name="Political Party", values=partycolours) +
     theme_map() + coord_equal() + theme(legend.position="bottom")
 
+tcpp = left_join(
+    distinct(tcp, CandidateID, .keep_all=TRUE),  #duplicate rows for some reason?
+    tpp,
+    by=c("DivisionID", "UniqueID"))
