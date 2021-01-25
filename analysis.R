@@ -108,7 +108,20 @@ ggplot(data=nat_map) +
     scale_colour_manual(name="Political Party", values=partycolours) +
     theme_map() + coord_equal() + theme(legend.position="bottom")
 
+
 tcpp = left_join(
-    distinct(tcp, CandidateID, .keep_all=TRUE),  #duplicate rows for some reason?
+    rename(
+        distinct(tcp, CandidateID, .keep_all=TRUE),  #duplicate rows for some reason?
+        TCP_Percent=Percent
+    ),
     tpp,
     by=c("DivisionID", "UniqueID"))
+
+tcpp2 = left_join(
+    tcpp,
+    rename(
+        distinct(fp, CandidateID, .keep_all=TRUE),  # once again, weird duplicates
+        FP_Percent=percent
+    ),
+    by=c("CandidateID",)
+)
