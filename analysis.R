@@ -121,7 +121,9 @@ tcpp2 = left_join(
     tcpp,
     rename(
         distinct(fp, CandidateID, .keep_all=TRUE),  # once again, weird duplicates
-        FP_Percent=percent
+        FP_Percent=Percent
     ),
-    by=c("CandidateID",)
+    by=c("CandidateID")
 )
+
+winners = tcpp2[tcpp2$Elected=="Y",]
