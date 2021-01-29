@@ -25,8 +25,8 @@ fp=fp19
 tpp=tpp19
 tcp=tcp19
 
-nat_map <- nat_map_download(2016)
-nat_data <- nat_data_download(2016)
+# nat_map <- nat_map_download(2016)
+# nat_data <- nat_data_download(2016)
 # nat_map <- nat_map_download(2019)
 # nat_data <- nat_data_download(2019)
 
@@ -108,22 +108,21 @@ ggplot(data=nat_map) +
     scale_colour_manual(name="Political Party", values=partycolours) +
     theme_map() + coord_equal() + theme(legend.position="bottom")
 
-
 tcpp = left_join(
-    rename(
-        distinct(tcp, CandidateID, .keep_all=TRUE),  #duplicate rows for some reason?
-        TCP_Percent=Percent
-    ),
-    tpp,
+    tcp %>% 
+        distinct(CandidateID, .keep_all=TRUE) %>% #duplicate rows for some reason?
+        rename(TCP_Percent=Percent, TCP_OrdinaryVotes=OrdinaryVotes),
+    tpp %>% 
+        select(DivisionID, UniqueID, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing) 
     by=c("DivisionID", "UniqueID"))
 
-tcpp2 = left_join(
+vp = left_join(
     tcpp,
-    rename(
-        distinct(fp, CandidateID, .keep_all=TRUE),  # once again, weird duplicates
-        FP_Percent=Percent
-    ),
+    fp %>% 
+        distinct(CandidateID, .keep_all=TRUE) %>% # weird duplicates. why?
+        select(CandidateID, OrdinaryVotes, Percent) %>%
+        rename(FP_Percent=Percent, FP_OrdinaryVotes=OrdinaryVotes),
     by=c("CandidateID")
 )
 
-winners = tcpp2[tcpp2$Elected=="Y",]
+winners = vp[vp$Elected=="Y",]
