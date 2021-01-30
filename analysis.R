@@ -76,6 +76,9 @@ ggplot(aes(map_id=id), data=nat_data) +
     expand_limits(x=nat_map$long, y=nat_map$lat) + 
     theme_map() + coord_equal()
 
+# Colour cells to match that parties colours
+# Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
+partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
 
 map.winners <- fp %>% filter(Elected == "Y") %>% 
     select(DivisionNm, PartyNm) %>% 
@@ -86,9 +89,7 @@ map.winners <- map.winners %>% arrange(group, order)
 # Combine Liberal and National parties
 map.winners <- map.winners %>% 
     mutate(PartyNm = ifelse(PartyNm %in% c("NATIONAL PARTY", "LIBERAL PARTY"), "LIBERAL NATIONAL COALITION", PartyNm))
-# Colour cells to match that parties colours
-# Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
-partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
+
 # ggplot(data=map.winners) + 
 #     geom_polygon(aes(x=long, y=lat, group=group, fill=PartyNm)) +
 #     scale_fill_manual(name="Political Party", values=partycolours) +
@@ -111,9 +112,9 @@ ggplot(data=nat_map) +
 tcpp = left_join(
     tcp %>% 
         distinct(CandidateID, .keep_all=TRUE) %>% #duplicate rows for some reason?
-        rename(TCP_Percent=Percent, TCP_OrdinaryVotes=OrdinaryVotes),
+        rename(TCP_Percent=Percent, TCP_Votes=OrdinaryVotes),
     tpp %>% 
-        select(DivisionID, UniqueID, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing) 
+        select(DivisionID, UniqueID, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing),
     by=c("DivisionID", "UniqueID"))
 
 vp = left_join(
