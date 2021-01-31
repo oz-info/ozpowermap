@@ -7,6 +7,8 @@ library(purrrlyr)
 library(scales)
 library(ggthemes)
 
+quantile.t = function(v) ecdf(v)(v)
+
 # data(abs2016)
 # data(fp16)
 # data(tpp16)
@@ -35,6 +37,7 @@ glimpse(fp)
 # show the first few rows
 head(fp) %>% kable
 
+
 # who_most_votes_prop <- fp %>% 
 #     filter(CandidateID != 999) %>% #exclude informal votes
 #     mutate(candidate_full_name = paste0(GivenNm, " ", Surname, " (", CandidateID, ")")) %>% 
@@ -42,10 +45,6 @@ head(fp) %>% kable
 #     dplyr::summarise(total_votes_for_candidate = sum(Percent, rm.na = TRUE)) %>% 
 #     arrange(desc(total_votes_for_candidate)) %>% 
 #     dplyr::rename(percent_votes_for_candidate = total_votes_for_candidate)
-
-# Colour cells to match that parties colours
-# Order = Australian Labor Party, Independent, Katters, Lib/Nats Coalition, Palmer, The Greens
-partycolours = c("#FF0033", "#000000", "#CC3300", "#0066CC", "#FFFF00", "#009900")
 
 partycolour_map = c(
     "AUSTRALIAN LABOR PARTY" = "#FF0033",
@@ -56,7 +55,6 @@ partycolour_map = c(
     "CENTRE ALLIANCE" = "#883388",
     "THE GREENS" = "#009900"
 )
-
 
 cart.winners <- fp %>% 
     filter(Elected == "Y") %>% 
@@ -76,8 +74,8 @@ tcpp = left_join(
         distinct(CandidateID, .keep_all=TRUE) %>% #duplicate rows for some reason?
         rename(TCP_Percent=Percent, TCP_Votes=OrdinaryVotes),
     tpp %>% 
-        select(DivisionID, UniqueID, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing),
-    by=c("DivisionID", "UniqueID"))
+        select(DivisionID, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing),
+    by=c("DivisionID"))
 
 vp = left_join(
     tcpp,
@@ -88,4 +86,7 @@ vp = left_join(
     by=c("CandidateID")
 )
 
-vp.winners = vp[vp$Elected=="Y",]
+vp.winners = vp %>% filter(Elected=="Y") %>%
+    mutate(Margin=TCP_Votes-TotalVotes/2) %>%
+    mutate(QMargin=1-quantile.t(Margin)) %>%
+    mutate(QFP_Percent=1-quantile.t(FP_Percent))
