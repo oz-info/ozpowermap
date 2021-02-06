@@ -6,6 +6,8 @@ library(broom)
 library(purrrlyr)
 library(scales)
 library(ggthemes)
+library(spatial)
+library(geojsonio)
 
 quantile.t = function(v) ecdf(v)(v)
 
