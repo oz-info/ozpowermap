@@ -270,20 +270,22 @@
     },
     "dplyr": {
       "Package": "dplyr",
-      "Version": "1.0.3",
+      "Version": "1.0.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "365f8c3650ab95582e600f160fd5fb88"
+      "Hash": "01c82e3b053eb7660a8ace8d932265b8"
     },
     "eechidna": {
       "Package": "eechidna",
-      "Version": "1.4.0",
+      "Version": "1.4.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "eechidna",
-      "RemoteUsername": "danmackinlay",
+      "RemoteUsername": "jforbes14",
       "RemoteRef": "HEAD",
+      "RemoteSha": "8e7e014e23c23dd95f1a18b99429d6cb2249a747",
+      "Hash": "1d4edca64dbe025b6b088e271890a38c"
     },
     "ellipsis": {
       "Package": "ellipsis",
