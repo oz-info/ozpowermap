@@ -76,12 +76,12 @@ tcpp = left_join(
         distinct(CandidateID, .keep_all=TRUE) %>% #duplicate rows for some reason?
         rename(TCP_Percent=Percent, TCP_Votes=OrdinaryVotes),
     tpp %>% 
-        select(DivisionID, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing),
-    by=c("DivisionID"))
+        select(DivisionNm, LNP_Votes, LNP_Percent, ALP_Votes, ALP_Percent, TotalVotes, Swing),
+    by=c("DivisionNm"))
 
 vp = left_join(
     tcpp,
-    fp %>% 
+    fp %>%
         distinct(CandidateID, .keep_all=TRUE) %>% # weird duplicates. why?
         select(CandidateID, OrdinaryVotes, Percent) %>%
         rename(FP_Percent=Percent, FP_OrdinaryVotes=OrdinaryVotes),
