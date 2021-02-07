@@ -8,6 +8,11 @@ library(scales)
 library(ggthemes)
 library(spatial)
 library(geojsonio)
+library(spdplyr)
+library(geojsonio)
+library(spdplyr)
+library(rmapshaper)
+library(leaflet)
 
 quantile.t = function(v) ecdf(v)(v)
 
@@ -92,3 +97,20 @@ vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(Margin=TCP_Votes-TotalVotes/2) %>%
     mutate(QMargin=1-quantile.t(Margin)) %>%
     mutate(QFP_Percent=1-quantile.t(FP_Percent))
+
+
+m <- leaflet() %>% addTiles()
+m  # a map with the default OSM tile layer
+
+
+# set bounds
+m %>% fitBounds(0, 40, 10, 50)
+
+# move the center to Snedecor Hall
+m <- m %>% setView(-93.65, 42.0285, zoom = 17)
+m
+
+# popup
+m %>% addPopups(-93.65, 42.0285, "Here is the <b>Department of Statistics</b>, ISU")
+rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
+rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)
