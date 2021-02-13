@@ -34,16 +34,10 @@ fp=fp19
 tpp=tpp19
 tcp=tcp19
 
-# nat_map <- nat_map_download(2016)
-# nat_data <- nat_data_download(2016)
-nat_map <- nat_map_download(2019)
-nat_data <- nat_data_download(2019)
-
 # inspect the data frame
 glimpse(fp)
 # show the first few rows
 head(fp) %>% kable
-
 
 # who_most_votes_prop <- fp %>% 
 #     filter(CandidateID != 999) %>% #exclude informal votes
@@ -100,17 +94,20 @@ vp.winners = vp %>% filter(Elected=="Y") %>%
 
 
 m <- leaflet() %>% addTiles()
-m  # a map with the default OSM tile layer
-
 
 # set bounds
-m %>% fitBounds(0, 40, 10, 50)
+m %>% fitBounds( 112.0, -44, 155.0, -9.0)
 
-# move the center to Snedecor Hall
-m <- m %>% setView(-93.65, 42.0285, zoom = 17)
-m
+m %>% addPolygons(data=nat_map)
+    # addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
+    #             opacity = 1.0, fillOpacity = 0.5,
+    #             fillColor = ~colorQuantile("YlOrRd", ALAND)(ALAND),
+    #             highlightOptions = highlightOptions(color = "white", weight = 2,
+    #                                                 bringToFront = TRUE))
+
+    # m <- m %>% setView(-149.3, -35.3, zoom = 11)
 
 # popup
-m %>% addPopups(-93.65, 42.0285, "Here is the <b>Department of Statistics</b>, ISU")
-rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
-rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)
+# m %>% addPopups(-93.65, 42.0285, "Here is the <b>Department of Statistics</b>, ISU")
+# rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
+# rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)
