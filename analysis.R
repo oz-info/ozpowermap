@@ -92,21 +92,31 @@ vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(QMargin=1-quantile.t(Margin)) %>%
     mutate(QFP_Percent=1-quantile.t(FP_Percent))
 
+winners_sF = left_join(
+    vp.winners,
+    nat_sF %>%  dplyr::rename(DivisionNm = elect_div),
+    by=c("DivisionNm"),
+    copy=TRUE)
+
+
 
 m <- leaflet() %>% addTiles()
 
 # set bounds
 m %>% fitBounds( 112.0, -44, 155.0, -9.0)
 
-m %>% addPolygons(data=nat_map)
-    # addPolygons(color = "#444444", weight = 1, smoothFactor = 0.5,
-    #             opacity = 1.0, fillOpacity = 0.5,
+m %>% addPolygons(
+    data=nat_sF,
+#    data=winners_sF,
+    color = "#444444", weight = 1, 
+    smoothFactor = 0.5,
+    opacity = 1.0, fillOpacity = 0.5,
     #             fillColor = ~colorQuantile("YlOrRd", ALAND)(ALAND),
-    #             highlightOptions = highlightOptions(color = "white", weight = 2,
-    #                                                 bringToFront = TRUE))
-
-    # m <- m %>% setView(-149.3, -35.3, zoom = 11)
-
+    highlightOptions = highlightOptions(
+        color = "white", weight = 2,
+        bringToFront = TRUE)
+)
+# m <- m %>% setView(-149.3, -35.3, zoom = 11)
 # popup
 # m %>% addPopups(-93.65, 42.0285, "Here is the <b>Department of Statistics</b>, ISU")
 # rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
