@@ -12,4 +12,4 @@ nat_sF <- sF_download(2019)
 #   destfile=DATAFILENAME,
 #   method='auto')
 # 
-# division.data = read.csv('HouseTppByDivisionDownload-24310.csv', skip=1)
+# division.data = read.csv('HouseTppByDivisionDownload-24310.csv', skip=1)\
