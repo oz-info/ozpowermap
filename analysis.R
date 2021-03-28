@@ -13,6 +13,7 @@ library(geojsonio)
 library(spdplyr)
 library(rmapshaper)
 library(leaflet)
+library(sf)
 
 quantile.t = function(v) ecdf(v)(v)
 
@@ -92,13 +93,11 @@ vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(QMargin=1-quantile.t(Margin)) %>%
     mutate(QFP_Percent=1-quantile.t(FP_Percent))
 
-winners_sF = left_join(
+winners_sf = left_join(
     vp.winners,
-    nat_sF %>%  dplyr::rename(DivisionNm = elect_div),
+    nat_sf %>%  dplyr::rename(DivisionNm = elect_div),
     by=c("DivisionNm"),
     copy=TRUE)
-
-
 
 m <- leaflet() %>% addTiles()
 
@@ -106,7 +105,7 @@ m <- leaflet() %>% addTiles()
 m %>% fitBounds( 112.0, -44, 155.0, -9.0)
 
 m %>% addPolygons(
-    data=nat_sF,
+    data=nat_sf,
 #    data=winners_sF,
     color = "#444444", weight = 1, 
     smoothFactor = 0.5,
