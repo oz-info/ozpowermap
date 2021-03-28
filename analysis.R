@@ -95,7 +95,7 @@ vp.winners = vp %>% filter(Elected=="Y") %>%
 
 winners_sf = left_join(
     vp.winners,
-    nat_sf %>%  dplyr::rename(DivisionNm = elect_div),
+    nat_sff %>%  dplyr::rename(DivisionNm = elect_div),
     by=c("DivisionNm"),
     copy=TRUE)
 
@@ -105,7 +105,7 @@ m <- leaflet() %>% addTiles()
 m %>% fitBounds( 112.0, -44, 155.0, -9.0)
 
 m %>% addPolygons(
-    data=nat_sf,
+    data=nat_sff,
 #    data=winners_sF,
     color = "#444444", weight = 1, 
     smoothFactor = 0.5,
@@ -115,8 +115,8 @@ m %>% addPolygons(
         color = "white", weight = 2,
         bringToFront = TRUE)
 )
-# m <- m %>% setView(-149.3, -35.3, zoom = 11)
+m <- m %>% setView(-149.3, -35.3, zoom = 11)
 # popup
-# m %>% addPopups(-93.65, 42.0285, "Here is the <b>Department of Statistics</b>, ISU")
+m %>% addPopups(-93.65, 42.0285, "Here is the <b>Department of Statistics</b>, ISU")
 # rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
 # rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)

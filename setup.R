@@ -8,6 +8,7 @@ nat_map <- nat_map_download(2019)
 nat_data <- nat_data_download(2019)
 nat_sp <- sF_download(2019)
 nat_sf <- as(nat_sp, "sf")
+nat_sff <- st_transform(nat_sf, "+proj=longlat +datum=WGS84")
 
 # download.file(
 #   url=URL2PP,
