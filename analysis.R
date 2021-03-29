@@ -99,6 +99,9 @@ winners_sf = left_join(
     by=c("DivisionNm"),
     copy=TRUE)
 
+# https://docs.ropensci.org/geojsonio/reference/map_leaf.html
+map_leaf(nat_sff, lat="lat_c", lon="long_c")  
+
 m <- leaflet() %>% addTiles()
 
 # set bounds
