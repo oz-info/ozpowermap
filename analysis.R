@@ -102,25 +102,4 @@ winners_sf = left_join(
     copy=TRUE)
 
 tmap_mode("view")
-
-m <- leaflet() %>% addTiles()
-
-# set bounds
-m %>% fitBounds( 112.0, -44, 155.0, -9.0)
-
-m %>% addPolygons(
-    data=nat_sff,
-#    data=winners_sF,
-    color = "#444444", weight = 1, 
-    smoothFactor = 0.5,
-    opacity = 1.0, fillOpacity = 0.5,
-    # fillColor = ~colorQuantile("YlOrRd", ALAND)(ALAND),
-    highlightOptions = highlightOptions(
-        color = "white", weight = 2,
-        bringToFront = TRUE)
-)
-m <- m %>% setView(-149.3, -35.3, zoom = 11)
-# popup
-m %>% addPopups(-93.65, 42.0285, "Here is the <b>Department of Statistics</b>, ISU")
-# rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
-# rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)
+tm_shape(nat_sff) + tm_polygons(col = "area_sqkm", midpoint = 0)
