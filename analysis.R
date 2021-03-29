@@ -12,7 +12,9 @@ library(spdplyr)
 library(geojsonio)
 library(spdplyr)
 library(rmapshaper)
-library(leaflet)
+library(grid)
+library(tmap)
+library(viridis)
 library(sf)
 
 quantile.t = function(v) ecdf(v)(v)
@@ -98,6 +100,8 @@ winners_sf = left_join(
     nat_sff %>%  dplyr::rename(DivisionNm = elect_div),
     by=c("DivisionNm"),
     copy=TRUE)
+
+tmap_mode("view")
 
 m <- leaflet() %>% addTiles()
 
