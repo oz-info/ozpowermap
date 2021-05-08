@@ -20,3 +20,16 @@ A project of [Dan MacKinlay](https://danmackinlay.name).
 ## TODO
 
 * Persuade [microburbs](https://www.microburbs.com.au/) to integrate our data.
+
+## Installation
+
+For doing data analysis you need all the geography libraries installed
+
+```bash
+# Ubuntu et al
+sudo apt install libgeos-dev libudunits2-dev libgdal1-dev
+# macos
+brew install # some stuff I can't remember right now
+# windows 
+## dunno
+```
