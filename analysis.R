@@ -96,10 +96,11 @@ vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(QFP_Percent=1-quantile.t(FP_Percent))
 
 winners_sf = left_join(
-    vp.winners,
     nat_sff %>%  dplyr::rename(DivisionNm = elect_div),
+    vp.winners,
     by=c("DivisionNm"),
     copy=TRUE)
 
 tmap_mode("view")
 tm_shape(nat_sff) + tm_polygons(col = "area_sqkm", midpoint = 0)
+
