@@ -13,9 +13,9 @@ library(geojsonio)
 library(spdplyr)
 library(rmapshaper)
 library(grid)
-library(tmap)
 library(viridis)
 library(sf)
+library(leaflet)
 
 quantile.t = function(v) ecdf(v)(v)
 
@@ -101,13 +101,14 @@ winners_sf = left_join(
     by=c("DivisionNm"),
     copy=TRUE)
 
-tmap_mode("view")
-tm_shape(nat_sff) + tm_polygons(midpoint = 0) + 
-    tm_markers(
-        shape = marker_icon(),
-        col = NA,
-        border.col = NULL,
-        text = NULL,
-        text.just = "top",
-        markers.on.top.of.text = TRUE,
-        clustering=FALSE)
+rawleafletmap <- leaflet() %>%
+    addProviderTiles(
+        "CartoDB.Positron",
+        options = tileOptions(minZoom=4, maxZoom=13))
+
+leafletmap <- rawleafletmap %>%
+    addPolygons(
+        data=winners_sf,
+        # fillColor = ~pal(Christianity_diff)
+)
+leafletmap
