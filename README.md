@@ -4,6 +4,7 @@ A map of where to move in Australia to ensure your voice is heard.
 
 A project of [Dan MacKinlay](https://danmackinlay.name).
 
+
 [Ben Raue](https://www.tallyroom.com.au/) advises:
 
 >The election results data published by the AEC is already pretty good.
@@ -15,6 +16,14 @@ A project of [Dan MacKinlay](https://danmackinlay.name).
 >In some cases datasets are broken up by geography (by state or electorate) but it’s trivial to merge them back together in R.
 >
 >The House of Reps downloads for 2019 are [here](https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm).
+
+## Thanks
+
+This tutorial is built upon excellent work, tutorials, and advice from several kindly people:
+
+* [Jeremy Forbes](https://github.com/jforbes14/)
+* [Ben Raue](https://www.tallyroom.com.au/) 
+* [Timothy Lin](https://www.timlrx.com/blog/using-leaflet-in-r-tutorial)
 
 ## TODO
 
