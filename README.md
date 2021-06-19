@@ -88,8 +88,3 @@ brew install # some stuff I can't remember right now. GDAL?
 * [Exploring the Census data: A case study of 2016 • eechidna](https://jforbes14.github.io/eechidna/articles/exploring-census-data.html)
 * [Mapping Australia's Electorates • eechidna](https://jforbes14.github.io/eechidna/articles/plotting-electorates.html)
 
-
-### tmap
-
-* [2 tmap | Making Maps with R](https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html#interactive-maps-with-tmap)
-* [tmap: get started!](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)* [6 leaflet | Making Maps with R](https://bookdown.org/nicohahn/making_maps_with_r5/docs/leaflet.html)
