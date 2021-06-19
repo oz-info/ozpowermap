@@ -61,17 +61,7 @@ brew install # some stuff I can't remember right now. GDAL?
 * [Cartographic projection — PROJ 8.0.0 documentation](https://proj.org/usage/projections.html)
 * [Spatial Reference List -- Spatial Reference](https://spatialreference.org/ref/)
 
-### Leaflet
-
-* [Leaflet - a JavaScript library for interactive maps](https://leafletjs.com/index.html)
-* [Using GeoJSON with Leaflet - Leaflet - a JavaScript library for interactive maps](https://leafletjs.com/examples/geojson/)
-* [Leaflet for R - Shapes](https://rstudio.github.io/leaflet/shapes.html)
-* [Leaflet for R - Markers](https://rstudio.github.io/leaflet/markers.html)
-* [Leaflet for R - Popups and Labels](https://rstudio.github.io/leaflet/popups.html)
-* [Layer Groups and Layers Control - Leaflet - a JavaScript library for interactive maps](https://leafletjs.com/examples/layers-control/)
-* [Using Leaflet in R - Tutorial – Quasilinear Musings](https://www.timlrx.com/blog/using-leaflet-in-r-tutorial)
-* [Projection problems with leaflet](https://community.rstudio.com/t/projection-problems-with-leaflet/27747/2)
-
+git 
 ### google maps
 
 * [Data Layer Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/datalayer#style_geojson_data)
