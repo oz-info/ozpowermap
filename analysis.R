@@ -62,7 +62,7 @@ partycolour_map = c(
 
 cart.winners <- fp %>% 
     filter(Elected == "Y") %>% 
-    select(DivisionNm, PartyNm) %>% 
+    select(DivisionNm, PartyNm,) %>% 
     mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
     merge(nat_data, by.x="DivisionNm", by.y="elect_div")
 # Plot it
@@ -102,7 +102,7 @@ winners_sf = left_join(
     copy=TRUE)
 
 tmap_mode("view")
-tm_shape(nat_sff) + tm_polygons(col = NULL, midpoint = 0) + 
+tm_shape(nat_sff) + tm_polygons(midpoint = 0) + 
     tm_markers(
         shape = marker_icon(),
         col = NA,
