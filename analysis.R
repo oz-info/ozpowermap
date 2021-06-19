@@ -102,5 +102,12 @@ winners_sf = left_join(
     copy=TRUE)
 
 tmap_mode("view")
-tm_shape(nat_sff) + tm_polygons(col = "area_sqkm", midpoint = 0)
-
+tm_shape(nat_sff) + tm_polygons(col = NULL, midpoint = 0) + 
+    tm_markers(
+        shape = marker_icon(),
+        col = NA,
+        border.col = NULL,
+        text = NULL,
+        text.just = "top",
+        markers.on.top.of.text = TRUE,
+        clustering=FALSE)
