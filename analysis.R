@@ -86,14 +86,15 @@ vp = left_join(
     fp %>%
         distinct(CandidateID, .keep_all=TRUE) %>% # weird duplicates. why?
         select(CandidateID, OrdinaryVotes, Percent) %>%
-        rename(FP_Percent=Percent, FP_OrdinaryVotes=OrdinaryVotes),
+        rename(FP_Percent=Percent, FP_OrdinaryVotes=OrdinaryVotes), 
     by=c("CandidateID")
 )
 
 vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(Margin=TCP_Votes-TotalVotes/2) %>%
     mutate(QMargin=1-quantile.t(Margin)) %>%
-    mutate(QFP_Percent=1-quantile.t(FP_Percent))
+    mutate(QFP_Percent=1-quantile.t(FP_OrdinaryVotes)  # Maybe should be FP_Percent?
+)
 
 winners_sf = left_join(
     nat_sff %>%  dplyr::rename(DivisionNm = elect_div),
