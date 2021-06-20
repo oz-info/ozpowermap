@@ -101,14 +101,21 @@ winners_sf = left_join(
     by=c("DivisionNm"),
     copy=TRUE)
 
-rawleafletmap <- leaflet() %>%
+rawleafletmap <- leaflet(data=winners_sf) %>%
     addProviderTiles(
         "CartoDB.Positron",
-        options = tileOptions(minZoom=4, maxZoom=13))
+        options = tileOptions(
+            minZoom=4, 
+            maxZoom=11
+        )
+    )
 
 leafletmap <- rawleafletmap %>%
     addPolygons(
-        data=winners_sf,
         # fillColor = ~pal(Christianity_diff)
-)
+) %>% addMarkers(
+        ~long_c, ~lat_c, 
+        popup = ~as.character(DivisionNm),
+        label = ~as.character(DivisionNm),
+    )
 leafletmap
