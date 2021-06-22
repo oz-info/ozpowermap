@@ -7,7 +7,6 @@ library(purrrlyr)
 library(scales)
 library(ggthemes)
 library(spatial)
-library(geojsonio)
 library(spdplyr)
 library(geojsonio)
 library(spdplyr)
@@ -16,6 +15,7 @@ library(grid)
 library(viridis)
 library(sf)
 library(leaflet)
+library(htmltools)
 
 quantile.t = function(v) ecdf(v)(v)
 
@@ -111,12 +111,23 @@ rawleafletmap <- leaflet(data=winners_sf) %>%
         )
     )
 
+popupHtml = function (arg) {
+    print(arg);
+    return("foo")
+}
+withTags({
+    div(class="header", checked=NA,
+        p("Ready to take the Shiny tutorial? If so"),
+        a(href="shiny.rstudio.com/tutorial", "Click Here!")
+    )
+})
+
 leafletmap <- rawleafletmap %>%
     addPolygons(
         # fillColor = ~pal(Christianity_diff)
 ) %>% addMarkers(
         ~long_c, ~lat_c, 
-        popup = ~as.character(DivisionNm),
-        label = ~as.character(DivisionNm),
+        popup = ~popupHtml,
+        label = ~as.character(Surname),
     )
 leafletmap
