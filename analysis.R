@@ -16,6 +16,7 @@ library(viridis)
 library(sf)
 library(leaflet)
 library(htmltools)
+library(stringr)
 
 quantile.t = function(v) ecdf(v)(v)
 
@@ -98,7 +99,7 @@ vp = left_join(
 vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(Margin=TCP_Votes-TotalVotes/2) %>%
     mutate(QMargin=1-quantile.t(Margin)) %>%
-    mutate(QFP_Percent=1-quantile.t(FP_OrdinaryVotes)  # Maybe should be FP_Percent?
+    mutate(QFP_Percent=1-quantile.t(FP_Percent)  # Maybe should be FP_Percent?
 )
 
 winners_sf = left_join(
@@ -116,23 +117,28 @@ rawleafletmap <- leaflet(data=winners_sf) %>%
         )
     )
 
-popupHtml = function (arg) {
-    print(arg);
-    return("foo")
-}
-withTags({
-    div(class="header", checked=NA,
-        p("Ready to take the Shiny tutorial? If so"),
-        a(href="shiny.rstudio.com/tutorial", "Click Here!")
-    )
+
+
+popupHtml = apply(winners_sf, 1, function(r){
+    withTags({
+        div(
+            p(str_to_title(paste(r$GivenNm, r$Surname))),
+            dl(
+                dt('Margin'), dd(r$Margin),
+                dt('First prefs'), dd(r$FP_Percent),
+            )
+        )
+    })
 })
+
 
 leafletmap <- rawleafletmap %>%
     addPolygons(
         # fillColor = ~pal(Christianity_diff)
 ) %>% addMarkers(
         ~long_c, ~lat_c, 
-        popup = ~popupHtml,
-        label = ~as.character(Surname),
+        popup = popupHtml,
+        label = ~as.character(DivisionNm),
     )
 leafletmap
+
