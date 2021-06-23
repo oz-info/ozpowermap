@@ -37,6 +37,11 @@ fp=fp19
 tpp=tpp19
 tcp=tcp19
 
+# nat_map = readRDS(file = "nat_map.Rdata")
+nat_sff = readRDS(file = "nat_sff.Rdata")
+nat_data = readRDS(file = "nat_data.Rdata")
+
+
 # inspect the data frame
 glimpse(fp)
 # show the first few rows
@@ -66,12 +71,12 @@ cart.winners <- fp %>%
     mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
     merge(nat_data, by.x="DivisionNm", by.y="elect_div")
 # Plot it
-ggplot(data=nat_map) +
-    geom_polygon(aes(x=long, y=lat, group=group),
-                 fill="grey90", colour="white") +
-    geom_point(data=cart.winners, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
-    scale_colour_manual(name="Political Party", values=partycolour_map) +
-    theme_map() + coord_equal() + theme(legend.position="bottom")
+# ggplot(data=nat_map) +
+#     geom_polygon(aes(x=long, y=lat, group=group),
+#                  fill="grey90", colour="white") +
+#     geom_point(data=cart.winners, aes(x=x, y=y, colour=PartyNm), size=1.5, alpha=0.8) +
+#     scale_colour_manual(name="Political Party", values=partycolour_map) +
+#     theme_map() + coord_equal() + theme(legend.position="bottom")
 
 tcpp = left_join(
     tcp %>% 
