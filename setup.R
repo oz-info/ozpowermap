@@ -1,3 +1,8 @@
+###
+# This file sets up the necessary data by downloading it, then save a local copy
+# this should only need to be run infrequently.
+# thereafter we use the local copy which is helpful when deploying a site from github or netlify etc
+###
 
 library(eechidna)
 library(sf)
@@ -14,9 +19,3 @@ nat_sff <- st_transform(nat_sf, "+proj=longlat +datum=WGS84")
 saveRDS(nat_sff, file = "nat_sff.Rdata")
 saveRDS(nat_data, file = "nat_data.Rdata")
 
-# download.file(
-#   url=URL2PP,
-#   destfile=DATAFILENAME,
-#   method='auto')
-# 
-# division.data = read.csv('HouseTppByDivisionDownload-24310.csv', skip=1)\
