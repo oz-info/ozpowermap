@@ -99,6 +99,7 @@ vp = left_join(
 vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(Margin=TCP_Votes-TotalVotes/2) %>%
     mutate(QMargin=1-quantile.t(Margin)) %>%
+    mutate(Margin_Prop=Margin/TotalVotes) %>%
     mutate(QFP_Percent=1-quantile.t(FP_Percent)  # Maybe should be FP_Percent?
 )
 
@@ -117,28 +118,44 @@ rawleafletmap <- leaflet(data=winners_sf) %>%
         )
     )
 
-
+pal <- colorNumeric(
+    "magma",
+    c(0,1)
+)
+# pal = viridis_pal(alpha = 1, begin = 0, end = 1, direction = 1, option = "D")
 
 popupHtml = apply(winners_sf, 1, function(r){
-    withTags({
+    s = as.character(withTags({
         div(
-            p(str_to_title(paste(r$GivenNm, r$Surname))),
+            p(
+                h3(str_to_title(paste(r$GivenNm, r$Surname, '(', r$PartyNm, ')')))
+            ),
             dl(
-                dt('Margin'), dd(r$Margin),
-                dt('First prefs'), dd(r$FP_Percent),
+                dt('Margin'), dd(format(round(r$Margin_Prop*100, 2), nsmall = 2), '%'),
+                dt('First prefs'), dd(r$FP_Percent, '%'),
             )
         )
-    })
+    }))
+    # s[[1]]
 })
 
 
 leafletmap <- rawleafletmap %>%
     addPolygons(
-        # fillColor = ~pal(Christianity_diff)
-) %>% addMarkers(
+        fillColor = ~pal(QMargin),
+        weight = 1,
+        opacity = 1.0, fillOpacity = 0.5,
+        label = ~as.character(str_to_title(DivisionNm)),
+        # label=popupHtml,
+    ) %>% addLegend(
+        pal = pal,
+        values = ~QMargin,
+        opacity = 0.5,
+        title="Winning margin",
+        # labFormat = labelFormat(transform = function(x) round(10^x))
+    ) %>% addMarkers(
         ~long_c, ~lat_c, 
         popup = popupHtml,
-        label = ~as.character(DivisionNm),
     )
 leafletmap
 
