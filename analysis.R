@@ -71,6 +71,7 @@ cart.winners <- fp %>%
     select(DivisionNm, PartyNm,) %>% 
     mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
     merge(nat_data, by.x="DivisionNm", by.y="elect_div")
+
 # Plot it
 # ggplot(data=nat_map) +
 #     geom_polygon(aes(x=long, y=lat, group=group),
@@ -98,10 +99,9 @@ vp = left_join(
 
 vp.winners = vp %>% filter(Elected=="Y") %>%
     mutate(Margin=TCP_Votes-TotalVotes/2) %>%
-    mutate(QMargin=1-quantile.t(Margin)) %>%
-    mutate(Margin_Prop=Margin/TotalVotes) %>%
-    mutate(QFP_Percent=1-quantile.t(FP_Percent)  # Maybe should be FP_Percent?
-)
+    # mutate(QMargin=1-quantile.t(Margin)) %>%
+    mutate(Margin_Prop=Margin/TotalVotes) # %>%
+    # mutate(QFP_Percent=1-quantile.t(FP_Percent))
 
 winners_sf = left_join(
     nat_sff %>%  dplyr::rename(DivisionNm = elect_div),
@@ -120,7 +120,7 @@ rawleafletmap <- leaflet(data=winners_sf) %>%
 
 pal <- colorNumeric(
     "magma",
-    c(0,1)
+    range(winners_sf$Margin),
 )
 # pal = viridis_pal(alpha = 1, begin = 0, end = 1, direction = 1, option = "D")
 
@@ -142,14 +142,19 @@ popupHtml = apply(winners_sf, 1, function(r){
 
 leafletmap <- rawleafletmap %>%
     addPolygons(
-        fillColor = ~pal(QMargin),
+        fillColor = ~pal(Margin),
         weight = 1,
         opacity = 1.0, fillOpacity = 0.5,
         label = ~as.character(str_to_title(DivisionNm)),
-        # label=popupHtml,
+        highlightOptions = highlightOptions(
+            color = "white",
+            weight = 2,
+            bringToFront = TRUE
+        ),
+        dashArray='3'
     ) %>% addLegend(
         pal = pal,
-        values = ~QMargin,
+        values = ~Margin,
         opacity = 0.5,
         title="Winning margin",
         # labFormat = labelFormat(transform = function(x) round(10^x))
