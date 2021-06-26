@@ -2,9 +2,6 @@
 
 A map of where to move in Australia to ensure your voice is heard.
 
-A project of [Dan MacKinlay](https://danmackinlay.name).
-
-
 [Ben Raue](https://www.tallyroom.com.au/) advises:
 
 >The election results data published by the AEC is already pretty good.
@@ -16,6 +13,8 @@ A project of [Dan MacKinlay](https://danmackinlay.name).
 >In some cases datasets are broken up by geography (by state or electorate) but it’s trivial to merge them back together in R.
 >
 >The House of Reps downloads for 2019 are [here](https://results.aec.gov.au/24310/Website/HouseDownloadsMenu-24310-Csv.htm).
+
+A project started by [Dan MacKinlay](https://danmackinlay.name).
 
 ## Thanks
 
@@ -87,13 +86,3 @@ brew install # some stuff I can't remember right now. GDAL?
 * [Exploring the Election data: a case study of 2016 • eechidna](https://jforbes14.github.io/eechidna/articles/exploring-election-data.html)
 * [Exploring the Census data: A case study of 2016 • eechidna](https://jforbes14.github.io/eechidna/articles/exploring-census-data.html)
 * [Mapping Australia's Electorates • eechidna](https://jforbes14.github.io/eechidna/articles/plotting-electorates.html)
-
-<<<<<<< HEAD
-
-### tmap
-
-* [2 tmap | Making Maps with R](https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html#interactive-maps-with-tmap)
-* [tmap: get started!](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)* [6 leaflet | Making Maps with R](https://bookdown.org/nicohahn/making_maps_with_r5/docs/leaflet.html)
-
-=======
->>>>>>> 4e049d0... bang

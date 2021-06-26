@@ -1,6 +1,6 @@
-name: "cat-website"
+name: "ozpowermap"
 navbar:
-  title: "My cats' website"
+  title: "The Australian vote power map: Where your vote counts"
   left:
     - text: "Home"
       href: index.html

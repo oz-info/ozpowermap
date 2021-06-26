@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
+
 ```{r dataproc, include=FALSE}
 library(eechidna)
 library(tidyverse)
@@ -115,7 +116,7 @@ winners_sf = left_join(
     copy=TRUE)
 ```
 
-```{r drawmap}
+```{r drawmap, echo=FALSE}
 rawleafletmap <- leaflet(data=winners_sf) %>%
     addProviderTiles(
         "CartoDB.Positron",
@@ -178,5 +179,35 @@ leafletmap <- rawleafletmap %>%
     #         })
     #     }"
     # )
+leafletmap
 ```
+In Australia, the party that gets to form government is chosen by who wins the most seats in the house of representatives, which comes down to winning the competition in most of federal electorates.
+But the competitions are much closer in some seats than others; Not all votes have the same importance when it comes to choosing the party which gets to run the country for the next few years.
+In some electorates the margin is very narrow, and the victorious candidate is chosen by no more voters than you can fit in a pub.
+Or to turn it around: If you live in one of those areas, your vote is very important, and you have a representative who really needs your support to keep their job.
+Next time you feel like the government is ignoring you, maybe you should consider moving to one of these _marginal seats_ and see if your representative isn’t much more interested in hearing what you have to say.
 
+Let’s have a look at this on a map.
+Here are the electorates from the 2019 Federal election, colourised by the size of the margin.
+Assuming that voting patterns are similar in the next election, this can indicate roughly how much your vote matters based on where you live.
+Light colours: marginal seats: you probably have the power to influence policy and government.
+Dark colours: Your representative thoroughly. Based on history, thhis suggests that they don’t really need to worry about the opinions of any given voters to keep their jobs.
+
+## Technical details
+
+This visualization is open source. 
+If you want to see how it is done, or to make your own version, visit the 
+[source code at github](https://github.com/oz-info/ozpowermap/).
+Why not build one for your state or territory?
+Or one for the Senate instead of the House of Reps?
+Or make it look prettier? We are not graphic designers over here. 😜
+
+## Credits
+
+A project started by [Dan MacKinlay](https://danmackinlay.name).
+
+This tutorial is built upon work, tutorials, and advice from several kindly people:
+
+* [Jeremy Forbes](https://github.com/jforbes14/) and the [eechidna contrib utors](https://github.com/jforbes14/eechidna/graphs/contributors)
+* [Ben Raue](https://www.tallyroom.com.au/) 
+* [Timothy Lin](https://www.timlrx.com/blog/using-leaflet-in-r-tutorial)
