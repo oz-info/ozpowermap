@@ -13,7 +13,7 @@ library(sf)
 nat_data <- nat_data_download(2019)
 nat_sp <- sF_download(2019)
 nat_sf <- as(nat_sp, "sf")
-nat_sff <- st_transform(nat_sf, "+proj=longlat +datum=WGS84")
+nat_sff <- st_transform(nat_sf, "+proj=longlat +datum=WGS84") #https://github.com/r-spatial/sf/issues/363
 
 # saveRDS(nat_map, file = "nat_map.Rdata")
 saveRDS(nat_sff, file = "nat_sff.Rdata")
