@@ -201,13 +201,18 @@ If you want to see how it is done, or to make your own version, visit the
 Why not build one for your state or territory?
 Or one for the Senate instead of the House of Reps?
 Or make it look prettier? We are not graphic designers over here. 😜
+Or do a more sophisticated analysis! There is a lot more data to play with here and we are only scratching the surface.
 
 ## Credits
 
 A project started by [Dan MacKinlay](https://danmackinlay.name).
 
-This tutorial is built upon work, tutorials, and advice from several kindly people:
+This site is built upon work, tutorials, inspiration and/or advice from many people we offer them thanks to their inspiration.
 
-* [Jeremy Forbes](https://github.com/jforbes14/) and the [eechidna contrib utors](https://github.com/jforbes14/eechidna/graphs/contributors)
+* [Jeremy Forbes](https://github.com/jforbes14/) and the [eechidna contributors](https://github.com/jforbes14/eechidna/graphs/contributors)
 * [Ben Raue](https://www.tallyroom.com.au/) 
 * [Timothy Lin](https://www.timlrx.com/blog/using-leaflet-in-r-tutorial)
+* [Peter Ellis](http://freerangestats.info/)
+* [Dr Kevin Bonham](https://kevinbonham.blogspot.com/)
+
+However, all mistakes made here and opinions expressed here are the responsibility of the ozpowermap project contributors, not these muses.

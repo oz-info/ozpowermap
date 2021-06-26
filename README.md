@@ -18,11 +18,15 @@ A project started by [Dan MacKinlay](https://danmackinlay.name).
 
 ## Thanks
 
-This tutorial is built upon excellent work, tutorials, and advice from several kindly people:
+This site is built upon work, tutorials, inspiration and/or advice from many people we offer them thanks to their inspiration.
 
-* [Jeremy Forbes](https://github.com/jforbes14/)
+* [Jeremy Forbes](https://github.com/jforbes14/) and the [eechidna contributors](https://github.com/jforbes14/eechidna/graphs/contributors)
 * [Ben Raue](https://www.tallyroom.com.au/) 
 * [Timothy Lin](https://www.timlrx.com/blog/using-leaflet-in-r-tutorial)
+* [Peter Ellis](http://freerangestats.info/)
+* [Dr Kevin Bonham](https://kevinbonham.blogspot.com/)
+
+However, all mistakes made here and opinions expressed here are the responsibility of the ozpowermap project contributors, not these muses.
 
 ## TODO
 
