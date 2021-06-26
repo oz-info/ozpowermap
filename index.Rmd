@@ -122,7 +122,7 @@ rawleafletmap <- leaflet(data=winners_sf) %>%
         "CartoDB.Positron",
         options = tileOptions(
             minZoom=4, 
-            maxZoom=11
+            maxZoom=12
         )
     )
 
@@ -181,17 +181,27 @@ leafletmap <- rawleafletmap %>%
     # )
 leafletmap
 ```
-In Australia, the party that gets to form government is chosen by who wins the most seats in the house of representatives, which comes down to winning the competition in most of federal electorates.
-But the competitions are much closer in some seats than others; Not all votes have the same importance when it comes to choosing the party which gets to run the country for the next few years.
+Next time you feel like you do not have a say in how the government operates, maybe you could think to yourself “maybe I just don’t live in the right place”?
+
+In Australia, the party that gets to form government is the onewho wins the most seats in the House of Representatives, which comes down to winning the vote in the majority of federal electorates.
+But the competitions are much closer for some seats than others.
+How important your vote is depends on where that vote is,
 In some electorates the margin is very narrow, and the victorious candidate is chosen by no more voters than you can fit in a pub.
-Or to turn it around: If you live in one of those areas, your vote is very important, and you have a representative who really needs your support to keep their job.
-Next time you feel like the government is ignoring you, maybe you should consider moving to one of these _marginal seats_ and see if your representative isn’t much more interested in hearing what you have to say.
+
+Or, to turn it around, If you live in one of those areas where one pub-full of people get to choose who wins, your vote is very important, and you have a representative who really needs your support to keep their job.
+Next time you feel like the government is ignoring you, maybe you should consider moving to one of these _marginal seats_ and then see if your representative isn’t much more interested in hearing what you have to say.
+(If that does help, let us know)
 
 Let’s have a look at this on a map.
-Here are the electorates from the 2019 Federal election, colourised by the size of the margin.
-Assuming that voting patterns are similar in the next election, this can indicate roughly how much your vote matters based on where you live.
-Light colours: marginal seats: you probably have the power to influence policy and government.
-Dark colours: Your representative thoroughly. Based on history, thhis suggests that they don’t really need to worry about the opinions of any given voters to keep their jobs.
+Here are the electorates from the 2019 Federal election, colourised by the size of the margin that the winning candidate had,
+Assuming that voting patterns are similar in the next election, this can indicate roughly how much your vote matters in the next election too.
+
+Light colours:
+: Marginal seats. You probably have the power to influence policy and government.
+
+Dark colours:
+: Non marginal seats. Your representative thoroughly won, and there is likely not so much pressure on them to win over every last voter.
+
 
 ## Technical details
 
@@ -202,6 +212,16 @@ Why not build one for your state or territory?
 Or one for the Senate instead of the House of Reps?
 Or make it look prettier? We are not graphic designers over here. 😜
 Or do a more sophisticated analysis! There is a lot more data to play with here and we are only scratching the surface.
+
+## TODO
+
+This is a work in progress.
+We could do lots of things to make this better
+
+1. Those map markers get in the way; maybe we could replace them with a mouseover thing
+2. perhaps this would be better as an overlay on google maps, so you can search and navigate electorates better
+3. Contributor instructions could be clearer
+4. … whatever you want! This project is open source and you can change it!
 
 ## Credits
 
@@ -215,4 +235,4 @@ This site is built upon work, tutorials, inspiration and/or advice from many peo
 * [Peter Ellis](http://freerangestats.info/)
 * [Dr Kevin Bonham](https://kevinbonham.blogspot.com/)
 
-However, all mistakes made here and opinions expressed here are the responsibility of the ozpowermap project contributors, not these muses.
+However, all mistakes made here and opinions expressed here are the responsibility of the ozpowermap project contributors, not these folk.

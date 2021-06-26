@@ -28,13 +28,19 @@ This site is built upon work, tutorials, inspiration and/or advice from many peo
 
 However, all mistakes made here and opinions expressed here are the responsibility of the ozpowermap project contributors, not these muses.
 
-## TODO
+## How to contribute
 
-* Persuade [microburbs](https://www.microburbs.com.au/) to integrate our data.
+The easiest way to get started here is to install [RStudio](https://www.rstudio.com/products/rstudio/) which is the statistic system we used to make this.
 
-## Installation
+Next, fork the [source code](https://github.com/oz-info/ozpowermap) for this project and download it.
 
-For doing data analysis you need all the geography libraries installed
+Now, inside RStudio, you should be able to get all the libraries you need installed by running 
+
+```r
+renv::restore()
+```
+
+Your OS might need extra the geography libraries installed.
 
 ```bash
 # Ubuntu et al
