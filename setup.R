@@ -1,5 +1,5 @@
 ###
-# This file sets up the necessary data by downloading it, then saves a local copy
+# This file sets up the necessary data by downloading it, then saves a local copy as an R datafram
 # this should only need to be run infrequently.
 # thereafter we use the local copy which is helpful when deploying a site from github or netlify etc
 ###

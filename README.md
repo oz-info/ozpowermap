@@ -40,15 +40,21 @@ Now, inside RStudio, you should be able to get all the libraries you need instal
 renv::restore()
 ```
 
-Your OS might need extra the geography libraries installed.
+Download the large data files by using 
+
+```r
+source('setup.R')
+```
+
+Your OS might need extra the geography libraries installed:
 
 ```bash
-# Ubuntu et al
+## Ubuntu et al
 sudo apt install libgeos-dev libudunits2-dev libgdal1-dev
-# macos
+## macos
 brew install # some stuff I can't remember right now. GDAL?
-# windows 
-## dunno
+## windows 
+# dunno
 ```
 
 ## Useful resources
