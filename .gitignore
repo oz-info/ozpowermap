@@ -39,3 +39,5 @@ vignettes/*.pdf
 .Renviron
 
 /maps
+# in case of accidentally copying cache data into site
+/docs/maps

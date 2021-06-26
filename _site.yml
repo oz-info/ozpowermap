@@ -10,3 +10,10 @@ navbar:
 output:
   html_document:
     theme: darkly
+output_dir: "docs"
+include: []
+exclude:  # I cannot work how how to stop rmarkdown trying to include the maps
+  - "./maps/"
+  - "national-*.zip"
+  - "maps/national-*.zip"
+  - "./maps/*"
