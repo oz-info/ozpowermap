@@ -181,6 +181,7 @@ leafletmap <- rawleafletmap %>%
     # )
 leafletmap
 ```
+
 Next time you feel like you do not have a say in how the government operates, maybe you could think to yourself “maybe I just don’t live in the right place”?
 
 In Australia, the party that gets to form government is the onewho wins the most seats in the House of Representatives, which comes down to winning the vote in the majority of federal electorates.
@@ -188,7 +189,7 @@ But the competitions are much closer for some seats than others.
 How important your vote is depends on where that vote is,
 In some electorates the margin is very narrow, and the victorious candidate is chosen by no more voters than you can fit in a pub.
 
-Or, to turn it around, If you live in one of those areas where one pub-full of people get to choose who wins, your vote is very important, and you have a representative who really needs your support to keep their job.
+Or, to turn it around, if you live in one of those areas where one pub-full of people get to choose who wins, your vote is very important, and you have a representative who really needs your support to keep their job.
 Next time you feel like the government is ignoring you, maybe you should consider moving to one of these _marginal seats_ and then see if your representative isn’t much more interested in hearing what you have to say.
 (If that does help, let us know)
 
