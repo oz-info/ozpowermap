@@ -43,10 +43,10 @@ nat_sff = readRDS(file = "nat_sff.Rdata")
 nat_data = readRDS(file = "nat_data.Rdata")
 
 
-# inspect the data frame
-glimpse(fp)
-# show the first few rows
-head(fp) %>% kable
+# # inspect the data frame
+# glimpse(fp)
+# # show the first few rows
+# head(fp) %>% kable
 
 # who_most_votes_prop <- fp %>% 
 #     filter(CandidateID != 999) %>% #exclude informal votes
@@ -56,15 +56,15 @@ head(fp) %>% kable
 #     arrange(desc(total_votes_for_candidate)) %>% 
 #     dplyr::rename(percent_votes_for_candidate = total_votes_for_candidate)
 
-partycolour_map = c(
-    "AUSTRALIAN LABOR PARTY" = "#FF0033",
-    "LIB/NATS COALITION" = "#0066CC",
-    "INDEPENDENT" = "#000000",
-    "KATTER'S AUSTRALIAN PARTY (KAP)" = "#CC3300",
-    "PALMER's UNITED AUSTRALIA PARTY" = "#FFFF00",
-    "CENTRE ALLIANCE" = "#883388",
-    "THE GREENS" = "#009900"
-)
+# partycolour_map = c(
+#     "AUSTRALIAN LABOR PARTY" = "#FF0033",
+#     "LIB/NATS COALITION" = "#0066CC",
+#     "INDEPENDENT" = "#000000",
+#     "KATTER'S AUSTRALIAN PARTY (KAP)" = "#CC3300",
+#     "PALMER's UNITED AUSTRALIA PARTY" = "#FFFF00",
+#     "CENTRE ALLIANCE" = "#883388",
+#     "THE GREENS" = "#009900"
+# )
 
 cart.winners <- fp %>% 
     filter(Elected == "Y") %>% 
@@ -72,7 +72,7 @@ cart.winners <- fp %>%
     mutate(PartyNm = ifelse(PartyNm %in% c("LIBERAL PARTY", "NATIONAL PARTY"), "LIB/NATS COALITION", PartyNm)) %>% 
     merge(nat_data, by.x="DivisionNm", by.y="elect_div")
 
-# Plot it
+# Plot it inside R
 # ggplot(data=nat_map) +
 #     geom_polygon(aes(x=long, y=lat, group=group),
 #                  fill="grey90", colour="white") +
@@ -121,18 +121,19 @@ rawleafletmap <- leaflet(data=winners_sf) %>%
 pal <- colorNumeric(
     "magma",
     range(winners_sf$Margin),
+    reverse=TRUE
 )
-# pal = viridis_pal(alpha = 1, begin = 0, end = 1, direction = 1, option = "D")
 
 popupHtml = apply(winners_sf, 1, function(r){
     s = as.character(withTags({
         div(
             p(
-                h3(str_to_title(paste(r$GivenNm, r$Surname, '(', r$PartyNm, ')')))
+                h3(str_to_title(paste(r$GivenNm, r$Surname, paste(sep="", '(', r$PartyNm, ')'))))
             ),
             dl(
-                dt('Margin'), dd(format(round(r$Margin_Prop*100, 2), nsmall = 2), '%'),
-                dt('First prefs'), dd(r$FP_Percent, '%'),
+                dt('Winnning Margin'), dd(r$Margin ),
+                dt('First preference votes'), dd(r$FP_OrdinaryVotes),
+                dt('Total Votes'), dd(r$TotalVotes),
             )
         )
     }))
@@ -161,6 +162,14 @@ leafletmap <- rawleafletmap %>%
     ) %>% addMarkers(
         ~long_c, ~lat_c, 
         popup = popupHtml,
-    )
+    )  #%>% htmlwidgets::onRender( # see https://rstudio.github.io/leaflet/morefeatures.html#custom-javascript-with-htmlwidgetonrender
+    #     "function(el, x) {
+    #       var leafletmap = this;
+    #       leafletmap.on('baselayerchange',
+    #         function (e) {
+    #           leafletmap.minimap.changeLayer(L.tileLayer.provider(e.name));
+    #         })
+    #     }"
+    # )
 leafletmap
 
