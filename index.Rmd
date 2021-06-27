@@ -1,6 +1,5 @@
 ---
 title: "Where your vote counts"
-author: "Dan MacKinlay"
 date: "26/06/2021"
 output: 
   html_document: 
