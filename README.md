@@ -64,6 +64,7 @@ brew install # some stuff I can't remember right now. GDAL?
 * [Creating GeoJSON out of Shapefile in R](https://blog.exploratory.io/creating-geojson-out-of-shapefile-in-r-40bc0005857d)
 * [Chapter 8 Making maps with R | Geocomputation with R](https://geocompr.robinlovelace.net/adv-map.html)
 * [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/)
+* [RMarkdown’s site generator](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html) which is how this site is hosted on github
 
 ### Leaflet
 
