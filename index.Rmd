@@ -108,7 +108,7 @@ vp = left_join(
 )
 
 vp.winners = vp %>% filter(Elected=="Y") %>%
-    mutate(Margin=TCP_Votes-TotalVotes/2) %>%
+    mutate(Margin=ceiling(TCP_Votes-TotalVotes/2)) %>%
     # mutate(QMargin=1-quantile.t(Margin)) %>%
     mutate(Margin_Prop=Margin/TotalVotes) # %>%
     # mutate(QFP_Percent=1-quantile.t(FP_Percent))
