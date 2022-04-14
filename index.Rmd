@@ -5,6 +5,8 @@ output:
   html_document: 
     fig_width: 8
     fig_height: 6
+    includes:
+       in_header: analytics.html
 ---
 
 ```{r setup, include=FALSE}
