@@ -193,7 +193,7 @@ Dark colours:
 
 Next time you feel like you do not have a say in how the government operates, maybe you could think to yourself “maybe I just don’t live in the right place”?
 
-In Australia, the party that gets to form government is the onewho wins the most seats in the House of Representatives, which comes down to winning the vote in the majority of federal electorates.
+In Australia, the party that gets to form government is the one `who wins the most seats in the House of Representatives, which comes down to winning the vote in the majority of federal electorates.
 But the competitions are much closer for some seats than others.
 How important your vote is depends on where that vote is,
 In some electorates the margin is very narrow, and the victorious candidate is chosen by no more voters than you can fit in a pub.

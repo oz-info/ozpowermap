@@ -23,7 +23,7 @@ However, all mistakes made here and opinions expressed here are the responsibili
 
 ## How to contribute
 
-The easiest way to get started here is to install [RStudio](https://www.rstudio.com/products/rstudio/) which is the statistic system we used to make this.
+The easiest way to get started here is to install [RStudio](https://www.rstudio.com/products/rstudio/) which is the statistics system we used to make this.
 
 Next, fork the [source code](https://github.com/oz-info/ozpowermap) for this project and download it.
 
