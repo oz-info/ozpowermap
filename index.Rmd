@@ -140,7 +140,10 @@ popupHtml = apply(winners_sf, 1, function(r){
     s = as.character(withTags({
         div(
             p(
-                h3(str_to_title(paste(r$GivenNm, r$Surname, paste(sep="", '(', r$PartyNm, ')'))))
+                h3(str_to_title(paste("Electoral Division:", r$DivisionNm)))
+            ),
+            p(
+                str_to_title(paste(r$GivenNm, r$Surname, paste(sep="", '(', r$PartyNm, ')')))
             ),
             dl(
                 dt('Winnning Margin'), dd(r$Margin ),
